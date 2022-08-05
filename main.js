@@ -2,7 +2,7 @@ song1 = "";
 song2 = "";
 
 function preload(){
-    song = loadSound("music1.mp3");
+    song1 = loadSound("music1.mp3");
     song2 = loadSound("music2.mp3");
 }
 
