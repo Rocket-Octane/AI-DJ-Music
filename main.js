@@ -44,7 +44,7 @@ function gotPoses(results){
 function draw(){
     image(video, 0, 0, 665, 500);
 
-    song1_status = song1.isPlaying(true);
+    song1_status = song1.isPlaying();
 
     fill("red");
     stroke("red");
@@ -53,7 +53,7 @@ function draw(){
         circle(leftWristX, leftWristY, 20);
         song2.stop();
 
-        if(song1.isPlaying() == false){
+        if(song1_status == false){
             song1.isPlaying(true);
             document.getElementById("song_playing").innerHTML = "The song being played is gaming music";
         }
