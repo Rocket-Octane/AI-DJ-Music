@@ -5,14 +5,16 @@ leftWristY = 0;
 rightWristX = 0;
 rightWristY = 0;
 score_leftWrist = 0;
+score_rightWrist
 song1_status = "";
+song2_status = "";
 
-function preload(){
+function preload() {
     song1 = loadSound("music1.mp3");
     song2 = loadSound("music2.mp3");
 }
 
-function setup(){
+function setup() {
     canvas = createCanvas(665, 500);
     canvas.center();
 
@@ -23,12 +25,12 @@ function setup(){
     poseNet.on("pose", gotPoses);
 }
 
-function modelLoaded(){
+function modelLoaded() {
     console.log("PoseNet is initialized");
 }
 
-function gotPoses(results){
-    if(results.length > 0){
+function gotPoses(results) {
+    if (results.length > 0) {
         console.log(results);
         leftWristX = results[0].pose.leftWrist.x;
         leftWristY = results[0].pose.leftWrist.y;
@@ -45,6 +47,7 @@ function draw(){
     image(video, 0, 0, 665, 500);
 
     song1_status = song1.isPlaying();
+    song2_status = song2.isPlaying();
 
     fill("red");
     stroke("red");
@@ -54,12 +57,22 @@ function draw(){
         song2.stop();
 
         if(song1_status == false){
-            song1.isPlaying(true);
-            document.getElementById("song_playing").innerHTML = "The song being played is gaming music";
+            song1.play();
+            document.getElementById("song_playing").innerHTML = "Playing - gaming music";
+        }
+    }
+    if(score_rightWrist > 0.2){
+        circle(rightWristX, rightWristY, 20);
+        song1.stop();
+
+        if(song2_status == false){
+            song2.play();
+            document.getElementById("song_playing").innerHTML = "Playing - Wellerman song";
         }
     }
 }
 
-function play(){
-    song1.play();
+
+function play() {
+    song2.play();
 }
