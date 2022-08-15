@@ -71,8 +71,3 @@ function draw(){
         }
     }
 }
-
-
-function play() {
-    song2.play();
-}
